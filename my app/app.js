@@ -1,0 +1,14 @@
+document.writeln(" <h1>Lavalamp CSS Menu</h1> "); 
+document.writeln("  "); 
+document.writeln(" <nav> "); 
+document.writeln("   <a href=\"#\">Home</a> "); 
+document.writeln("   <a href=\"#\">About</a> "); 
+document.writeln("   <a href=\"#\">Blog</a> "); 
+document.writeln("   <a href=\"#\">Portefolio</a> "); 
+document.writeln("   <a href=\"#\">Contact</a> "); 
+document.writeln("   <div class=\"animation start-home\"></div> "); 
+document.writeln(" </nav> "); 
+document.writeln("  "); 
+document.writeln(" <p> "); 
+document.writeln("   By <span>Patak</span> "); 
+document.writeln(" </p> ");
