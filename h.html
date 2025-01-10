@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+
+</head>
+<body>
+<div class="" id="nav">
+    <div class="status-bar">
+        <div id="time"></div>
+        <div id="battery">در حال دریافت...</div>
+    </div> 
+<script>
+const appDrawer = document.getElementById('app-drawer');
+        document.addEventListener('click', () => {
+            appDrawer.classList.toggle('show');
+        });
+
+        // نمایش ساعت
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit' });
+            document.getElementById('time').textContent = timeString;
+        }
+        setInterval(updateTime, 1000); // به‌روزرسانی هر ثانیه
+        updateTime(); // اجرای اولیه
+
+        // نمایش درصد باتری (شبیه‌سازی شده)
+        function updateBattery() {
+            // در اینجا باید از API مربوط به باتری مرورگر استفاده کنید
+            // این کد فقط یک شبیه‌سازی است
+            const batteryLevel = Math.floor(Math.random() * 101); // عدد تصادفی بین ۰ تا ۱۰۰
+            document.getElementById('battery').textContent = `باتری: ${batteryLevel}%`;
+
+        }
+        setInterval(updateBattery, 5000)
+        updateBattery();
+
+</script>
+<style>
+ .status-bar {
+            position: fixed; /* ثابت در بالای صفحه */
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* پس‌زمینه نیمه‌شفاف */
+            color: white;
+            padding: 5px 10px;
+            display: flex;
+            justify-content: space-between; /* توزیع عناصر در دو طرف */
+            align-items: center;
+            z-index: 1000;
+        }
+</style>
+</div>
+<section id="w1">
+    <div id="loading-container">
+        <img id="logo" src="samsung_logo.png" alt="Samsung Galaxy A51">
+        <div id="powered-by">Powered by Android</div>
+        <img id="android-logo" src="android_logo.png" alt="Android">
+
+    </div>
+<script>
+ setTimeout(function() {
+    document.getElementById('w1').style.display = 'none';
+    document.getElementById('w2').style.display = 'block';
+    document.getElementById('nav').style.display = 'block';
+    }, 3000);
+</script>
+<style>
+    #w1 {
+        background-color: black; /* پس‌زمینه مشکی */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        overflow: hidden; /* جلوگیری از اسکرول */
+    }
+
+    #loading-container {
+        text-align: center;
+        color: white; /* رنگ متن سفید */
+    }
+
+    #logo {
+        width: 200px; /* اندازه لوگو */
+        margin-bottom: 20px;
+        animation: fadeIn 1s ease-in-out forwards; /* انیمیشن fade-in */
+    }
+    #powered-by{
+        font-size: 0.8rem;
+        opacity: 0.7;
+        animation: fadeIn 1.5s ease-in-out forwards; /* انیمیشن fade-in */
+    }
+    #android-logo{
+        width: 50px;
+        margin-top: 20px;
+        animation: fadeInUp 2s ease-in-out forwards; /* انیمیشن fade-in */
+    }
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+</section>
+<section id="w2" onclick="ww3()">
+    <div id="clock" class="animate-up"></div>
+    <div id="date" class="animate-up"></div>
+    <div class="phone">
+        <i class="fas fa-phone"></i>
+    </div>
+    <div class="camera">
+        <i class="fas fa-camera"></i>
+    </div>
+<script>
+function ww3() {
+    document.getElementById('w2').style.display = 'none';
+    document.getElementById('w3').style.display = 'block';    
+}
+function updateClock() {
+            const now = new Date();
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            let day = now.toLocaleDateString('fa-IR', { weekday: 'long' });
+            let date = now.toLocaleDateString('fa-IR', { day: 'numeric', month: 'long', year: 'numeric' });
+
+            hours = hours < 10 ? '0' + hours : hours;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+
+            document.getElementById('clock').textContent = `${hours}:${minutes}`;
+            document.getElementById('date').textContent = `${day}، ${date}`;
+        }
+
+        updateClock();
+        setInterval(updateClock, 1000); // به‌روزرسانی هر ثانیه
+
+        // اضافه کردن انیمیشن به صورت تاخیری
+        setTimeout(() => {
+            document.getElementById('clock').classList.add('animate-up');
+            document.getElementById('date').classList.add('animate-up');
+        }, 500); // تاخیر نیم ثانیه
+</script>
+<style>
+ #w2 {
+            background: linear-gradient(to bottom right, #2980b9, #8e44ad); /* گرادیان پس‌زمینه */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Vazirmatn', sans-serif;
+            color: white;
+            overflow: hidden; /* جلوگیری از اسکرول */
+        }
+        #clock {
+            font-size: 5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px #00000080;
+        }
+        #date {
+            font-size: 1.5rem;
+            text-shadow: 1px 1px 2px #00000080;
+
+        }
+        .animate-up {
+            animation: moveUp 1s ease-out forwards;
+        }
+
+        @keyframes moveUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        .phone{
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 2rem;
+            color: green;
+            text-shadow: 1px 1px 2px #00000080;
+        }
+        .camera{
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: white;
+            text-shadow: 1px 1px 2px #00000080;
+        }
+</style>
+</section>
+<section id="w3">
+    <h1>Life companion</h1>
+    <div id="message">Enter your PIN</div>
+    <div id="pin-display">
+        <div class="pin-circle"></div>
+        <div class="pin-circle"></div>
+        <div class="pin-circle"></div>
+        <div class="pin-circle"></div>
+    </div>
+    <div id="keyboard">
+        <div class="key">1</div>
+        <div class="key">2</div>
+        <div class="key">3</div>
+        <div class="key">4</div>
+        <div class="key">5</div>
+        <div class="key">6</div>
+        <div class="key">7</div>
+        <div class="key">8</div>
+        <div class="key">9</div>
+        <div class="key">Clr</div>
+        <div class="key">0</div>
+        <div class="key">Del</div>
+    </div>
+<script>
+ const pinDisplay = document.getElementById('pin-display');
+        const keys = document.querySelectorAll('.key');
+        const message = document.getElementById('message');
+        let enteredPin = '';
+        const correctPin = '0000'; // رمز عبور صحیح
+
+        keys.forEach(key => {
+            key.addEventListener('click', () => {
+                const keyValue = key.textContent;
+
+                if (keyValue === 'Del') {
+                    enteredPin = enteredPin.slice(0, -1);
+                } else if (keyValue === 'Clr') {
+                    enteredPin = '';
+                } else if (enteredPin.length < 4) {
+                    enteredPin += keyValue;
+                }
+
+                updatePinDisplay();
+                if (enteredPin.length === 4) {
+                    if (enteredPin === correctPin) {
+                        message.textContent = 'رمز عبور صحیح است!';
+                        message.classList.remove('error');
+
+                        setTimeout(()=>{
+                            document.getElementById('w4').style.display = 'block';
+                            document.getElementById('w3').style.display = 'none';
+                            document.getElementById('footer').style.display = 'block';
+
+                        },1000)
+                    } else {
+                        message.textContent = 'رمز عبور اشتباه است!';
+                        message.classList.add('error');
+                        enteredPin = '';
+                        updatePinDisplay();
+                    }
+                }
+            });
+        });
+
+        function updatePinDisplay() {
+            const circles = pinDisplay.querySelectorAll('.pin-circle');
+            circles.forEach((circle, index) => {
+                if (index < enteredPin.length) {
+                    circle.classList.add('filled');
+                } else {
+                    circle.classList.remove('filled');
+                }
+            });
+        }
+</script>
+<style>
+  #w3 {
+            background: linear-gradient(to bottom, #1c92d2, #f2fcfe);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Vazirmatn', sans-serif;
+            color: white;
+            overflow: hidden;
+        }
+
+        #pin-display {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .pin-circle {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid white;
+            margin: 0 5px;
+        }
+
+        .pin-circle.filled {
+            background-color: white;
+        }
+
+        #keyboard {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .key {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2); /* پس زمینه نیمه شفاف */
+            border: 2px solid white;
+            color: white;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease; /* انیمیشن برای تغییر رنگ و اندازه */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+
+        }
+        .key:hover{
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+        .key:active {
+            transform: scale(0.9); /* کوچک شدن دکمه هنگام کلیک */
+        }
+        #message{
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: rgb(255, 255, 255);
+            text-shadow: 1px 1px 2px #00000080;
+        }
+        #message.error{
+            color: rgb(255, 50, 50);
+        }
+</style>
+</section>
+    <section id="w4">
+        <div class="weather">
+            <i class="fas fa-cloud-sun"></i>
+            <span>شبیه برای اطلاعات وضع هوا</span>
+        </div>
+        <div id="search-bar">
+            <i class="fas fa-globe"></i>
+            <input type="text" class="form-control border-0" placeholder="جستجو در گوگل">
+            <i class="fas fa-microphone"></i>
+        </div>
+        <div id="app-icons">
+            <div class="app-icon" style="background-color: rgb(211, 38, 38);">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1200px-Google_%22G%22_Logo.svg.png" alt="">
+            </div>
+            <div class="app-icon" style="background-color: rgb(7, 102, 182);">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Google_Play_Store_icon.svg/2048px-Google_Play_Store_icon.svg.png" alt="">
+            </div>
+            <div onclick="app()" class="app-icon" style="background-color: rgb(221, 221, 221);">
+                <i class="fas fa-asterisk" style="color: black;"></i>
+            </div>
+            <div class="app-icon" style="background-color: rgb(190, 48, 180);">
+                <i class="fas fa-shopping-bag"></i>
+            </div>
+        </div>
+
+    <script>
+                $("app-icons").velocity({ translateX: "200px", rotateZ: "360deg" }, { duration: 1000 });
+function app(){
+document.getElementById('w5').style.display = 'block';
+document.getElementById('w4').style.display = 'none';
+}
+</script>
+<style>  
+data {
+            justify-content: flex-end; /* قرارگیری محتوا در پایین صفحه */
+
+            background: linear-gradient(to bottom, #4CAF50, #81C784); /* پس زمینه گرادیان */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            align-items: flex-start; /* برای تنظیم عمودی محتوا */
+        }
+
+        #search-bar {
+            background-color: white;
+            padding: 10px;
+            border-radius: 20px;
+            width: 90%;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+        }
+        #search-bar i{
+            margin: 0 10px;
+            color: gray;
+        }
+
+        #app-icons {
+            display: flex;
+            width: 90%;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .app-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            text-shadow: 1px 1px 2px #00000080;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .app-icon img{
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+
+        }
+        .weather{
+            position: absolute;
+            top: 20%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .weather i{
+            font-size: 3rem;
+            color: white;
+            text-shadow: 1px 1px 2px #00000080;
+        }
+        .weather span{
+            color: white;
+            text-shadow: 1px 1px 2px #00000080;
+        }
+</style>   
+</data>
+</section>
+<section id="w5">
+<input type="text" placeholder="جستجو" id="search" class="form-control">
+    <div id="app-grid">
+</div>
+<script>
+ const appGrid = document.getElementById('app-grid');
+        const searchInput = document.getElementById('search');
+
+        const apps = [
+            { name: 'دوربین', icon: 'favicon.ico',onclick:'w3()' },
+            
+        ];
+
+        function displayApps(appsToDisplay) {
+            appGrid.innerHTML = '';
+            appsToDisplay.forEach(app => {
+                const appIcon = document.createElement('div');
+                appIcon.classList.add('app-icon');
+                const img = document.createElement('img');
+                img.src = app.icon; // مسیر آیکون برنامه
+                img.alt = app.name;
+                img.onclick=app.onclick;
+                appIcon.appendChild(img);
+
+                const appName = document.createElement('div');
+                appName.classList.add('app-name');
+                appName.textContent = app.name;
+                appIcon.appendChild(appName);
+                appGrid.appendChild(appIcon);
+            });
+        }
+        displayApps(apps);
+
+        searchInput.addEventListener('input', (e)=>{
+            const searchValue = e.target.value.toLowerCase();
+            const filteredApps = apps.filter(app=> app.name.toLowerCase().includes(searchValue));
+            displayApps(filteredApps);
+        })                  
+</script>
+<style>
+#w5 {
+            background-color: #f0f0f0; /* پس‌زمینه */
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow-y: auto; /* برای اسکرول در صورت زیاد بودن برنامه‌ها */
+        }
+
+        #app-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* ۴ ستون */
+            gap: 10px;
+            padding: 20px;
+            width: 90%;
+            max-width: 400px; /* حداکثر عرض برای جلوگیری از بزرگ شدن بیش از حد در صفحات بزرگ */
+        }
+
+        .app-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 10px;
+            border-radius: 15px;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .app-icon:hover{
+            transform: scale(1.1);
+        }
+
+        .app-icon img {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 5px;
+            object-fit: contain;
+        }
+
+        .app-name {
+            font-size: 0.8rem;
+            color: #333;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        #search{
+            width: 90%;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+        }
+</style>
+</section>
+<div class="" id="footer">
+<div id="content">
+    <script>
+        let lastScrollTop = 0;
+        const body = document.body;
+        const bottomNav = document.getElementById('bottom-nav');
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop) {
+                body.classList.add('nav-hidden');
+            } else {
+                body.classList.remove('nav-hidden');
+            }
+            lastScrollTop = scrollTop;
+        });
+    </script>
+ <style>
+    #body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #content {
+        flex: 1; /* محتوای اصلی صفحه فضا را پر کند */
+        padding: 20px; /* برای ایجاد فضای اسکرول */
+        padding-bottom: 60px; /* برای جلوگیری از پوشیده شدن محتوا توسط نوار ناوبری */
+    }
+
+    #bottom-nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: #000; /* پس‌زمینه کاملاً مشکی */
+        padding: 10px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        z-index: 1000;
+        box-shadow: 0px -2px 5px rgba(255, 255, 255, 0.1); /* سایه روشن */
+        transition: transform 0.3s ease;
+    }
+
+    #bottom-nav a {
+        color: white;
+        font-size: 1.5rem;
+        text-decoration: none;
+        opacity: 0.7; /* شفافیت کمتر برای حالت عادی */
+        transition: opacity 0.3s, transform 0.2s; /* transition برای smooth بودن انیمیشن ها */
+    }
+    #bottom-nav a:hover, #bottom-nav a.active{
+        opacity: 1; /* شفافیت کامل در حالت hover */
+        transform: scale(1.2);
+    }
+
+   
+</style>
+</div>
+</body>
+</html>
+<style>
+#w2{display: none;}
+#w3{display: none;}
+#w4{display: none;}
+#w5{display: none;}
+#w6{display: none;}
+#w7{display: none;}
+#w8{display: none;}
+#w9{display: none;}
+#w10{display: none;}
+#footer{display: none;}
+#nav{display: none;}
+
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/2.0.6/velocity.min.js"></script>
+<script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
