@@ -60,6 +60,9 @@ innerHTML = `
                 <div class="col-md-3 footer-col">
                     <h5 class="footer-heading">مدیریت سازمان </h5>
                     <p>اقای عسکری هیچ ادعایی نداره و داره خدماتش را به صورت رایگان منتشر میکنه</p>
+                    <!-- Statistics by www.1abzar.com --->
+<script type="text/javascript" src="https://1abzar.ir/abzar/tools/stat/amar-v3-ramz.php?mod=4&amar=uw0el9qd5tkzf0adlki71iok09tigs&p=74a1bbef1d007a9c1fcb8a29c6675bef"></script><div style="display:none"><h3><a href="https://www.1abzar.com/abzar/stat.php">&#1570;&#1605;&#1575;&#1585;&#1711;&#1740;&#1585; &#1608;&#1576;&#1604;&#1575;&#1711;</a></h3></div>
+<!-- Statistics by www.1abzar.com --->
                 </div>
                 <div class="col-md-3 footer-col">
                     <h5 class="footer-heading">شبکه‌های اجتماعی</h5>
