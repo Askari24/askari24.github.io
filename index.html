@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحات اجتماعی من</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tahoma&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tahoma', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #00dbde, #fc00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient 5s ease infinite;
+            background-size: 200% 200%;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+        
+        .social-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .social-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: visible; /* تغییر از hidden به visible برای نمایش صحیح منو */
+            z-index: 1;
+        }
+        
+        .social-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .social-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+            z-index: -1;
+        }
+        
+        .social-card:hover::before {
+            transform: translateX(100%);
+        }
+        
+        .social-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .social-card:hover .social-icon {
+            transform: scale(1.2);
+        }
+        
+        .youtube { color: #FF0000; }
+        .instagram { color: #E1306C; }
+        .telegram { color: #0088cc; }
+        
+        .social-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .social-card p {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background: linear-gradient(45deg, #00dbde, #fc00ff);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* استایل‌های جدید و اصلاح شده برای dropdown تلگرام */
+        .telegram-dropdown {
+            position: relative;
+            width: 100%;
+            margin-top: 15px;
+        }
+        
+        .telegram-dropdown-btn {
+            width: 100%;
+            background: linear-gradient(45deg, #0088cc, #00aced);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .telegram-dropdown-content {
+            display: none;
+            position: absolute;
+            bottom: 100%;
+            right: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+            margin-bottom: 10px;
+            animation: fadeInDropdown 0.3s ease-in-out;
+        }
+        
+        @keyframes fadeInDropdown {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .telegram-dropdown:hover .telegram-dropdown-content {
+            display: block;
+        }
+        
+        .telegram-dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s;
+            text-align: right;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .telegram-dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        
+        .telegram-dropdown-content a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding-right: 20px;
+        }
+        
+        .telegram-dropdown-content a i {
+            margin-left: 8px;
+            color: #0088cc;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>شبکه‌های اجتماعی من</h1>
+            <p>من را در شبکه‌های اجتماعی دنبال کنید تا از آخرین مطالب و فعالیت‌های من با خبر شوید</p>
+        </header>
+        
+        <div class="social-container">
+            <!-- یوتیوب -->
+            <div class="social-card">
+                <div class="social-icon youtube">
+                    <i class="fab fa-youtube"></i>
+                </div>
+                <h3>یوتیوب</h3>
+                <p>ویدیوها و آموزش‌های جذاب من را در یوتیوب تماشا کنید</p>
+                <a href="https://www.youtube.com/@BaniAskariTV" class="btn" target="_blank">دنبال کردن</a>
+            </div>
+            
+            <!-- اینستاگرام -->
+            <div class="social-card">
+                <div class="social-icon instagram">
+                    <i class="fab fa-instagram"></i>
+                </div>
+                <h3>اینستاگرام</h3>
+                <p>عکس‌ها و استوری‌های من را در اینستاگرام ببینید</p>
+                <a href="https://www.instagram.com/abnus2025/" class="btn" target="_blank">دنبال کردن</a>
+            </div>
+            
+            <!-- تلگرام - نسخه اصلاح شده -->
+            <div class="social-card">
+                <div class="social-icon telegram">
+                    <i class="fab fa-telegram"></i>
+                </div>
+                <h3>تلگرام</h3>
+                <p>به کانال و گروه‌های من در تلگرام بپیوندید</p>
+                
+                <div class="telegram-dropdown">
+                    <button class="btn telegram-dropdown-btn">
+                        <i class="fab fa-telegram"></i> انتخاب گزینه
+                    </button>
+                    <div class="telegram-dropdown-content">
+                        <a href="https://t.me/ABNUS2025" target="_blank">
+                            <i class="fas fa-bullhorn"></i> کانال بنی عسکری
+                        </a>
+                        <a href="https://t.me/ABNOS2025" target="_blank">
+                            <i class="fas fa-users"></i>  گروه بنی عسکری
+                        </a>
+                        <a href="https://t.me/Metaphysics244" target="_blank">
+                            <i class="fas fa-comments"></i> گروه جامعه متافیزیک
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>با تشکر از همراهی شما ❤️</p>
+        </footer>
+    </div>
+</body>
+</html>
